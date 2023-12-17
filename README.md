@@ -1,32 +1,31 @@
 # Rhythm
 
-This template should help get you started developing with Vue 3 in Vite.
+![GitHub last commit](https://img.shields.io/github/last-commit/google/skia.svg?style=flat)
 
-Uses https://www.vexflow.com/
-Uses https://tonejs.github.io/
+![GitHub Pages badge](https://img.shields.io/badge/GitHub_Pages-222222?logo=github&logoColor=white) ![Vue.js badge](https://img.shields.io/badge/Vue.js_3-42b883?logo=vuedotjs&logoColor=white) ![Sass badge](https://img.shields.io/badge/Sass-cf649a?logo=sass&logoColor=white) ![Conventional commits badge](https://img.shields.io/badge/Conventional_commits-fa6673?logo=conventionalcommits&logoColor=white)
 
-## Recommended IDE Setup
+Web project to learn rhythm and bits of music theory through interactive user interface.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+This is a [Vue.js v3](https://vuejs.org/) project bootstrapped with [Create Vue](https://github.com/vuejs/create-vue), using [Tone.js](https://tonejs.github.io/) for sounds and [VexFlow](https://www.vexflow.com/) for music sheet syntax.
 
-## Customize configuration
+## Table of contents
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- [Prerequisites](#prerequisites)
+- [Project setup](#project-setup)
+- [To do](#to-do)
 
-## Project Setup
+## Prerequisites
 
-```sh
-npm install
-```
+- [Node](https://nodejs.org/en/) >=18
 
-### Compile and Hot-Reload for Development
+## Project setup
 
-```sh
-npm run dev
-```
+1. Clone this repository
+2. Install the dependencies: `npm install`
+3. Run the development server (compiles and hot-reloads): `npm run dev`
+4. See the local live server: `http://localhost:5173`
+5. Compile and minify for production: `npm run build`
 
-### Compile and Minify for Production
+## To do
 
-```sh
-npm run build
-```
+This is a work in progress. This project lacks of linting/formatting, design system, responsiveness, several instruments, and fully-featured launchpad with drag and drop note blocks (for rhythm) and a CI.
