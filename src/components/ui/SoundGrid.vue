@@ -23,16 +23,16 @@ const lightSpan = computed(() => {
 <template>
     <div class="soundGrid" :style="`grid-template-columns: repeat(${divisions}, 1fr)`">
         <GridItem :span="lightSpan">
-            <Light :on="beat === 1" />
+            <Light :on="beat > 0 && beat <= lightSpan * 1" />
         </GridItem>
         <GridItem :span="lightSpan">
-            <Light :on="beat === 2" />
+            <Light :on="beat > lightSpan * 1 && beat <= lightSpan * 2" />
         </GridItem>
         <GridItem :span="lightSpan">
-            <Light :on="beat === 3" />
+            <Light :on="beat > lightSpan * 2 && beat <= lightSpan * 3" />
         </GridItem>
         <GridItem :span="lightSpan">
-            <Light :on="beat === 4" />
+            <Light :on="beat > lightSpan * 3 && beat <= lightSpan * 4" />
         </GridItem>
         <slot />
     </div>
@@ -42,8 +42,8 @@ const lightSpan = computed(() => {
 .soundGrid {
     display: grid;
     grid-template-columns: repeat(64, 1fr);
-    grid-auto-rows: minmax(30px, auto);
-    gap: 20px;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 8px;
     justify-content: center;
     align-items: center;
 }

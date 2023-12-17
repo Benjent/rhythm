@@ -4,6 +4,7 @@ import * as Tone from 'tone'
 import Actions from "@/components/layout/Actions.vue"
 import GridItem from "@/components/layout/GridItem.vue"
 import Button from "@/components/ui/Button.vue"
+import Light from "@/components/ui/Light.vue"
 import SoundGrid from "@/components/ui/SoundGrid.vue"
 import Tile from "@/components/ui/Tile.vue"
 
@@ -21,7 +22,7 @@ const hitKick = () => {
 
 const runTime = () => {
     if (!isPlaying.value) return
-    if (beat.value === 4) {
+    if (beat.value === 64) {
         beat.value = 0
     }
     beat.value++
@@ -29,7 +30,7 @@ const runTime = () => {
     if (soundGrid.value[beat.value - 1]) {
         hitKick()
     }
-    setTimeout(runTime, 1000)
+    setTimeout(runTime, 50)
 }
 
 const play = () => {
@@ -54,18 +55,12 @@ const toggleTile = ({ checked, id }) => {
         <Actions>
             <Button @click="isPlaying ? stop() : play()">{{ isPlaying ? "Stop" : "Play" }}</Button>
         </Actions>
-        <SoundGrid :beat="beat">
-            <GridItem :span="16">
-                <Tile id="1" :active="beat === 1" :on="soundGrid[1-1]" @change="toggleTile" />
+        <SoundGrid :beat="beat" :divisions="64">
+            <GridItem v-for="(value) in 64" :key="`light_${value}`" :span="1">
+                <Light :on="beat === value" />
             </GridItem>
-            <GridItem :span="16">
-                <Tile id="2" :active="beat === 2" :on="soundGrid[2-1]" @change="toggleTile" />
-            </GridItem>
-            <GridItem :span="16">
-                <Tile id="3" :active="beat === 3" :on="soundGrid[3-1]" @change="toggleTile" />
-            </GridItem>
-            <GridItem :span="16">
-                <Tile id="4" :active="beat === 4" :on="soundGrid[4-1]" @change="toggleTile" />
+            <GridItem v-for="(value, index) in 64" :key="value" :span="1">
+                <Tile :id="value" :active="beat === value" :on="soundGrid[index]" @change="toggleTile" />
             </GridItem>
         </SoundGrid>
     </div>

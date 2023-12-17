@@ -38,14 +38,20 @@ watch(checked, (newChecked) => {
 
 <style lang="scss" scoped>
 .tile {
-    height: 100px;
-    width: 100px;
+    height: 20px;
+    width: 20px;
+    height: 100%;
+    width: 100%;
     border-radius: 3px;
     background: #393243;
     cursor: pointer;
 
     &--on {
         background: #aa98b4;
+    }
+
+    &--active {
+        border: solid 1px #efebf1;
     }
 
     &--on#{&}--active {

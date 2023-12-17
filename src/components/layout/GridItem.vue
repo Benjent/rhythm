@@ -16,8 +16,10 @@ const props = defineProps({
 
 <style lang="scss" scoped>
 .soundGridItem {
-    display: inline-grid;
-    align-self: center;
-    justify-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 </style>
