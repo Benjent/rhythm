@@ -1,34 +1,47 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onUnmounted, ref } from 'vue'
+import Button from "@/components/ui/Button.vue"
+import Actions from "@/components/layout/Actions.vue"
 import Light from "@/components/ui/Light.vue"
+import SoundGrid from "@/components/ui/SoundGrid.vue"
 
-const beat = ref(1)
+const divisions = 4
+const beatDuration = 1000 * (4 / divisions) // TODO this is another name for bpm somehow
+const beat = ref(0)
+const isPlaying = ref(false)
 
 const runTime = () => {
-    if (beat.value === 4) {
+    if (!isPlaying.value) return
+    if (beat.value === divisions) {
         beat.value = 0
     }
     beat.value++
-    setTimeout(runTime, 1000)
+    setTimeout(runTime, beatDuration)
 }
 
-onMounted(() => {
+const play = () => {
+    isPlaying.value = true
     runTime()
-})
+}
+
+const stop = () => {
+    isPlaying.value = false
+    beat.value = 0
+}
+
+onUnmounted(() => stop())
 </script>
 
 <template>
     <div class="beatIntroduction">
-        <p>Voici un battement.</p>
-        <div style="display: flex; gap: 20px;">
-            <Light :on="beat === 1" />
-            <Light :on="beat === 2" />
-            <Light :on="beat === 3" />
-            <Light :on="beat === 4" />
-        </div>
+        <p>Voici un battement. Cliquez sur "Play" pour le lancer et "Stop" pour l'arrêter.</p>
+        <Actions>
+            <Button @click="isPlaying ? stop() : play()">{{ isPlaying ? "Stop" : "Play" }}</Button>
+        </Actions>
+        <SoundGrid :beat="beat" :divisions="divisions" />
         <p>Sur une grille de 4 emplacements, on peut le voir se déplacer.</p>
-        <p>Il se déplace une seconde à la fois, du 1er au 4ème emplacement.</p>
-        <p>Lorsqu'il arrive au 4ème emplacement, il revient au 1er.</p>
+        <p>Pour le moment, le battement est réglé sur 1 seconde. Il se déplace donc d'1 seconde à la fois, du 1er au 4ème emplacement.</p>
+        <p>Lorsqu'il arrive au 4ème emplacement, il revient au 1er et forme donc une boucle de 4 secondes.</p>
     </div>
 </template>
 

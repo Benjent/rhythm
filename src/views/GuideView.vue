@@ -5,13 +5,21 @@ import Actions from '@/components/layout/Actions.vue'
 import Button from '@/components/ui/Button.vue'
 import BeatIntroduction from '@/components/steps/BeatIntroduction.vue'
 import DivisionIntroduction from '@/components/steps/DivisionIntroduction.vue'
+import QuaverIntroduction from '@/components/steps/QuaverIntroduction.vue'
+import SemiQuaverIntroduction from '@/components/steps/SemiQuaverIntroduction.vue'
 import SoundGridIntroduction from '@/components/steps/SoundGridIntroduction.vue'
 
 const route = useRoute()
 const router = useRouter()
 const step = ref(+route.query.step || 0)
 
-const steps = [BeatIntroduction, DivisionIntroduction, SoundGridIntroduction]
+const steps = [
+    BeatIntroduction,
+    DivisionIntroduction,
+    QuaverIntroduction,
+    SemiQuaverIntroduction,
+    SoundGridIntroduction,
+]
 
 const goToStep = (index) => {
     router.push({ to: "guide", query: { step: index } })

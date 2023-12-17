@@ -1,15 +1,16 @@
 <script setup>
 import { onUnmounted, ref } from 'vue'
 import * as Tone from 'tone'
-import Button from "@/components/ui/Button.vue"
-import Tile from "@/components/ui/Tile.vue"
-import SoundGrid from "@/components/ui/SoundGrid.vue"
 import Actions from "@/components/layout/Actions.vue"
 import GridItem from "@/components/layout/GridItem.vue"
+import Button from "@/components/ui/Button.vue"
+import Light from "@/components/ui/Light.vue"
+import SoundGrid from "@/components/ui/SoundGrid.vue"
+import Tile from "@/components/ui/Tile.vue"
 
 const drums = new Tone.MembraneSynth().toDestination()
 
-const divisions = 4
+const divisions = 8
 const beatDuration = 1000 * (4 / divisions) // TODO this is another name for bpm somehow
 const beat = ref(0)
 const isPlaying = ref(false)
@@ -54,31 +55,22 @@ onUnmounted(() => stop())
 
 <template>
     <div class="divisionIntroduction">
-        <p>Voici encore notre battement. Il dure encore 1 seconde.</p>
-        <p>Il sert de guide.</p>
-        <p>En dessous du battement, il y a des tuiles. Cliquez sur une d'entre elles pour créer un rythme. Le rythme est joué chaque fois que le battement tombe dessus.</p>
+        <p>Voici toujours notre battement, cette fois-ci divisé par groupes de 2. Il dure toujours 1 seconde et chaque division dure 0.5 secondes.</p>
         <Actions>
             <Button @click="isPlaying ? stop() : play()">{{ isPlaying ? "Stop" : "Play" }}</Button>
         </Actions>
         <SoundGrid :beat="beat" :divisions="divisions">
-            <GridItem :span="1">
-                <Tile id="1" :active="beat === 1" :on="soundGrid[1-1]" @change="toggleTile" />
-            </GridItem>
-            <GridItem :span="1">
-                <Tile id="2" :active="beat === 2" :on="soundGrid[2-1]" @change="toggleTile" />
-            </GridItem>
-            <GridItem :span="1">
-                <Tile id="3" :active="beat === 3" :on="soundGrid[3-1]" @change="toggleTile" />
-            </GridItem>
-            <GridItem :span="1">
-                <Tile id="4" :active="beat === 4" :on="soundGrid[4-1]" @change="toggleTile" />
+            <GridItem v-for="(value, index) in divisions" :key="value" :span="1">
+                <Tile :id="value" :active="beat === value" :on="soundGrid[index]" @change="toggleTile" />
             </GridItem>
         </SoundGrid>
-        <p>Chaque tuile représente un battement. On nomme la durée d'un battement une noire. Ici, une tuile vaut une noire.</p>
+        <p>Ici, chaque tuile représente non pas un battement mais la moitié d'un battement. On nomme la durée de cette moitié non pas une noire, mais une croche. Ici, une tuile vaut une croche.</p>
+        <p>Deux tuiles valent donc deux croches, qui valent au total une noire.</p>
     </div>
 </template>
 
 <style lang="scss" scoped>
-.divisionIntroduction {
+.soundGridIntroduction {
+
 }
 </style>
