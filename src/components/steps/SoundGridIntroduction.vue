@@ -10,6 +10,8 @@ import Tile from "@/components/ui/Tile.vue"
 
 const drums = new Tone.MembraneSynth().toDestination()
 
+const divisions = 64
+const beatDuration = 1000 * (4 / divisions) // TODO this is another name for bpm somehow
 const beat = ref(0)
 const isPlaying = ref(false)
 
@@ -17,12 +19,12 @@ const isPlaying = ref(false)
 const soundGrid = ref([false, false, false, false])
 
 const hitKick = () => {
-    drums.triggerAttackRelease("C1", 1000)
+    drums.triggerAttackRelease("C1", beatDuration)
 }
 
 const runTime = () => {
     if (!isPlaying.value) return
-    if (beat.value === 64) {
+    if (beat.value === divisions) {
         beat.value = 0
     }
     beat.value++
@@ -56,11 +58,11 @@ const toggleTile = ({ checked, id }) => {
             <Button @click="isPlaying ? stop() : play()">{{ isPlaying ? "Stop" : "Play" }}</Button>
         </Actions>
         <section class="content__fullWidth">
-            <SoundGrid :beat="beat" :divisions="64" :rows="3" class="content__breakout">
-                <GridItem v-for="(value) in 64" :key="`light_${value}`" :span="1">
+            <SoundGrid :beat="beat" :divisions="divisions" :rows="3" class="content__breakout">
+                <GridItem v-for="(value) in divisions" :key="`light_${value}`" :span="1">
                     <Light :on="beat === value" />
                 </GridItem>
-                <GridItem v-for="(value, index) in 64" :key="value" :span="1">
+                <GridItem v-for="(value, index) in divisions" :key="value" :span="1">
                     <Tile :id="value" :active="beat === value" :on="soundGrid[index]" @change="toggleTile" />
                 </GridItem>
             </SoundGrid>
