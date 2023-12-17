@@ -50,24 +50,24 @@ const toggleTile = ({ checked, id }) => {
 </script>
 
 <template>
-    <div class="divisionIntroduction">
+    <main class="content">
         <p>Allons un peu plus loin.</p>
         <Actions>
             <Button @click="isPlaying ? stop() : play()">{{ isPlaying ? "Stop" : "Play" }}</Button>
         </Actions>
-        <SoundGrid :beat="beat" :divisions="64">
-            <GridItem v-for="(value) in 64" :key="`light_${value}`" :span="1">
-                <Light :on="beat === value" />
-            </GridItem>
-            <GridItem v-for="(value, index) in 64" :key="value" :span="1">
-                <Tile :id="value" :active="beat === value" :on="soundGrid[index]" @change="toggleTile" />
-            </GridItem>
-        </SoundGrid>
-    </div>
+        <section class="content__fullWidth">
+            <SoundGrid :beat="beat" :divisions="64" :rows="3" class="content__breakout">
+                <GridItem v-for="(value) in 64" :key="`light_${value}`" :span="1">
+                    <Light :on="beat === value" />
+                </GridItem>
+                <GridItem v-for="(value, index) in 64" :key="value" :span="1">
+                    <Tile :id="value" :active="beat === value" :on="soundGrid[index]" @change="toggleTile" />
+                </GridItem>
+            </SoundGrid>
+        </section>
+    </main>
 </template>
 
 <style lang="scss" scoped>
-.soundGridIntroduction {
-
-}
+@import "../../assets/styles/modules/content.scss";
 </style>

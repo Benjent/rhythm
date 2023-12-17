@@ -8,6 +8,10 @@ const props = defineProps({
         type: Number,
         default: 64,
     },
+    rows: {
+        type: Number,
+        default: 1,
+    },
     beat: {
         type: Number,
         required: true,
@@ -21,7 +25,7 @@ const lightSpan = computed(() => {
 </script>
 
 <template>
-    <div class="soundGrid" :style="`grid-template-columns: repeat(${divisions}, 1fr)`">
+    <div class="soundGrid" :style="`grid-template-columns: repeat(${divisions}, 1fr); grid-template-rows: repeat(${rows}, 1fr)`">
         <GridItem :span="lightSpan">
             <Light :on="beat > 0 && beat <= lightSpan * 1" />
         </GridItem>
@@ -46,5 +50,6 @@ const lightSpan = computed(() => {
     gap: 8px;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 </style>

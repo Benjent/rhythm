@@ -1,0 +1,52 @@
+// This is a smart way of creating a standard page layout with breakout elements
+// https://www.youtube.com/watch?v=c13gpBrnGEw
+// https://codepen.io/kevinpowell/pen/ExrZrrw
+
+.content {
+    --padding-inline: 1rem;
+    --content-max-width: 900px;
+    --breakout-max-width: 1200px;
+    --flow-spacing: 1rem;
+  
+    --breakout-size: calc(
+      (var(--breakout-max-width) - var(--content-max-width)) / 2
+    );
+  
+    display: grid;
+    grid-template-columns:
+        [full-width-start] minmax(var(--padding-inline), 1fr)
+        [breakout-start] minmax(0, var(--breakout-size))
+        [content-start] min(
+            100% - (var(--padding-inline) * 2),
+            var(--content-max-width)
+        )
+        [content-end]
+        minmax(0, var(--breakout-size)) [breakout-end]
+        minmax(var(--padding-inline), 1fr) [full-width-end];
+
+    & > :not(.breakout, .full-width),
+    .full-width > :not(.breakout, .full-width) {
+        grid-column: content;
+    }
+    
+    & > &__breakout {
+        grid-column: breakout;
+    }
+    
+    & > &__fullWidth {
+        grid-column: full-width;
+    
+        // display: grid;
+        // grid-template-columns: inherit;
+    }
+    
+    img#{&}__fullWidth {
+        width: 100%;
+        max-height: 45vh;
+        object-fit: cover;
+    }
+
+    & > * + * {
+        margin-top: var(--flow-spacing, 1em);
+      }
+}

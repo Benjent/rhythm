@@ -53,14 +53,14 @@ onUnmounted(() => stop())
 </script>
 
 <template>
-    <div class="divisionIntroduction">
+    <main class="content">
         <p>Voici encore notre battement. Il dure encore 1 seconde.</p>
         <p>Il sert de guide.</p>
         <p>En dessous du battement, il y a des tuiles. Cliquez sur une d'entre elles pour créer un rythme. Le rythme est joué chaque fois que le battement tombe dessus.</p>
         <Actions>
             <Button @click="isPlaying ? stop() : play()">{{ isPlaying ? "Stop" : "Play" }}</Button>
         </Actions>
-        <SoundGrid :beat="beat" :divisions="divisions">
+        <SoundGrid :beat="beat" :divisions="divisions" :rows="2" class="content__breakout">
             <GridItem :span="1">
                 <Tile id="1" :active="beat === 1" :on="soundGrid[1-1]" @change="toggleTile" />
             </GridItem>
@@ -75,10 +75,17 @@ onUnmounted(() => stop())
             </GridItem>
         </SoundGrid>
         <p>Chaque tuile représente un battement. On nomme la durée d'un battement une noire. Ici, une tuile vaut une noire.</p>
-    </div>
+    </main>
 </template>
 
 <style lang="scss" scoped>
-.divisionIntroduction {
+@import "../../assets/styles/basics/colors.scss";
+@import "../../assets/styles/modules/content.scss";
+
+.l {
+    &__soundGrid {
+        // background: $background-inner;
+        // padding: 1rem;
+    }
 }
 </style>

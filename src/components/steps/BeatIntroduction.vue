@@ -33,17 +33,30 @@ onUnmounted(() => stop())
 </script>
 
 <template>
-    <div class="beatIntroduction">
+    <main class="content l">
         <p>Voici un battement. Cliquez sur "Play" pour le lancer et "Stop" pour l'arrêter.</p>
         <Actions>
             <Button @click="isPlaying ? stop() : play()">{{ isPlaying ? "Stop" : "Play" }}</Button>
         </Actions>
-        <SoundGrid :beat="beat" :divisions="divisions" />
-        <p>Sur une grille de 4 emplacements, on peut le voir se déplacer.</p>
+        <section class="content__breakout l__soundGrid">
+            <SoundGrid :beat="beat" :divisions="divisions" />
+        </section>
+        <div>
+            <p>Sur une grille de 4 emplacements, on peut le voir se déplacer.</p>
+        </div>
         <p>Pour le moment, le battement est réglé sur 1 seconde. Il se déplace donc d'1 seconde à la fois, du 1er au 4ème emplacement.</p>
         <p>Lorsqu'il arrive au 4ème emplacement, il revient au 1er et forme donc une boucle de 4 secondes.</p>
-    </div>
+    </main>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../../assets/styles/basics/colors.scss";
+@import "../../assets/styles/modules/content.scss";
+
+.l {
+    &__soundGrid {
+        // background: $background-inner;
+        // padding: 1rem;
+    }
+}
 </style>
