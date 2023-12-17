@@ -3,6 +3,7 @@
 This template should help get you started developing with Vue 3 in Vite.
 
 Uses https://www.vexflow.com/
+Uses https://tonejs.github.io/
 
 ## Recommended IDE Setup
 

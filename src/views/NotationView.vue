@@ -1,6 +1,8 @@
 <script setup>
 import { onMounted } from 'vue'
-import Note from "@/components/Note.vue"
+import Light from "@/components/ui/Light.vue"
+import Note from "@/components/ui/Note.vue"
+import Tile from "@/components/ui/Tile.vue"
 
 const units = [
     { label: "ronde", value: 1, symbol: "𝅝" }, // semibreve
@@ -38,6 +40,18 @@ onMounted(() => {
 
 <template>
     <div class="notation">
+        <div style="display: flex; gap: 20px;">
+            <Light />
+            <Light on />
+            <Light />
+            <Light />
+        </div>
+        <div style="display: flex; gap: 20px;">
+            <Tile />
+            <Tile on />
+            <Tile active />
+            <Tile on active />
+        </div>
         <p>Voici le temps de référence que l'on appelle la noire :</p>
         <Note :value="4" />
         <p>Lorsque l'on raisonne en terme de temps, on prend toujours la noire comme référence. Chaque note possède représente une division d'un tout. La noire est un quart de ce tout. Logiquement, deux noires représentent la moitié de ce tout ; quatre l'entièreté.</p>

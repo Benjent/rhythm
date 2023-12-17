@@ -10,13 +10,17 @@ import { RouterLink, RouterView } from 'vue-router'
         <div class="wrapper">
         <nav>
             <RouterLink to="/">Accueil</RouterLink>
+            <RouterLink to="/guide">Guide</RouterLink>
+            <RouterLink to="/beat-introduction">Beat intro</RouterLink>
             <RouterLink to="/notation">Notation</RouterLink>
             <RouterLink to="/time-signature">Signature rythmique</RouterLink>
         </nav>
         </div>
     </header>
 
-  <RouterView />
+    <main>
+        <RouterView />
+    </main>
 </template>
 
 <style scoped>

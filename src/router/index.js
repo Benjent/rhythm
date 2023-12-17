@@ -10,6 +10,11 @@ const router = createRouter({
             component: HomeView
         },
         {
+            path: '/guide',
+            name: 'guide',
+            component: () => import('../views/GuideView.vue')
+        },
+        {
             path: '/notation',
             name: 'notation',
             component: () => import('../views/NotationView.vue')
