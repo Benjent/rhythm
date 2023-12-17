@@ -2,8 +2,10 @@
 import { onUnmounted, ref } from 'vue'
 import * as Tone from 'tone'
 import Button from "@/components/ui/Button.vue"
-import Light from "@/components/ui/Light.vue"
 import Tile from "@/components/ui/Tile.vue"
+import SoundGrid from "@/components/ui/SoundGrid.vue"
+import Actions from "@/components/layout/Actions.vue"
+import GridItem from "@/components/layout/GridItem.vue"
 
 const drums = new Tone.MembraneSynth().toDestination()
 
@@ -50,37 +52,30 @@ onUnmounted(() => stop())
 
 <template>
     <div class="divisionIntroduction">
-        <Button @click="isPlaying ? stop() : play()">{{ isPlaying ? "Stop" : "Play" }}</Button>
         <p>Voici encore notre battement.</p>
         <p>Il sert de guide.</p>
         <p>En dessous du battement, il y a des tuiles. Cliquez sur une d'entre elles pour créer un rythme. Le rythme est joué chaque fois que le battement tombe dessus.</p>
-        <div class="trackpad">
-            <Light :on="beat === 1" />
-            <Light :on="beat === 2" />
-            <Light :on="beat === 3" />
-            <Light :on="beat === 4" />
-            <Tile id="1" :active="beat === 1" :on="soundGrid[1-1]" @change="toggleTile" />
-            <Tile id="2" :active="beat === 2" :on="soundGrid[2-1]" @change="toggleTile" />
-            <Tile id="3" :active="beat === 3" :on="soundGrid[3-1]" @change="toggleTile" />
-            <Tile id="4" :active="beat === 4" :on="soundGrid[4-1]" @change="toggleTile" />
-        </div>
+        <Actions>
+            <Button @click="isPlaying ? stop() : play()">{{ isPlaying ? "Stop" : "Play" }}</Button>
+        </Actions>
+        <SoundGrid :beat="beat" :divisions="4">
+            <GridItem :span="1">
+                <Tile id="1" :active="beat === 1" :on="soundGrid[1-1]" @change="toggleTile" />
+            </GridItem>
+            <GridItem :span="1">
+                <Tile id="2" :active="beat === 2" :on="soundGrid[2-1]" @change="toggleTile" />
+            </GridItem>
+            <GridItem :span="1">
+                <Tile id="3" :active="beat === 3" :on="soundGrid[3-1]" @change="toggleTile" />
+            </GridItem>
+            <GridItem :span="1">
+                <Tile id="4" :active="beat === 4" :on="soundGrid[4-1]" @change="toggleTile" />
+            </GridItem>
+        </SoundGrid>
     </div>
 </template>
 
 <style lang="scss" scoped>
 .divisionIntroduction {
-    & .trackpad {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
-        justify-content: center;
-        align-items: center;
-
-        .tile, .light {
-            align-self: center;
-            justify-self: center;
-        }
-    }
-
 }
 </style>

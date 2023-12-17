@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import * as Tone from 'tone'
+import Actions from "@/components/layout/Actions.vue"
 import GridItem from "@/components/layout/GridItem.vue"
 import Button from "@/components/ui/Button.vue"
 import SoundGrid from "@/components/ui/SoundGrid.vue"
@@ -49,8 +50,10 @@ const toggleTile = ({ checked, id }) => {
 
 <template>
     <div class="divisionIntroduction">
-        <Button @click="isPlaying ? stop() : play()">{{ isPlaying ? "Stop" : "Play" }}</Button>
         <p>Allons un peu plus loin.</p>
+        <Actions>
+            <Button @click="isPlaying ? stop() : play()">{{ isPlaying ? "Stop" : "Play" }}</Button>
+        </Actions>
         <SoundGrid :beat="beat">
             <GridItem :span="16">
                 <Tile id="1" :active="beat === 1" :on="soundGrid[1-1]" @change="toggleTile" />
