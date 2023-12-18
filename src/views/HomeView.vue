@@ -4,7 +4,7 @@ import { RouterLink } from 'vue-router'
 
 <template>
     <main class="content">
-        <p>Ce projet est en cours de construction. Il sera développé de temps à autres sur la première moitié de 2024.</p>
+        <p>Ce projet est en cours de construction. Il sera développé de temps à autre sur la première moitié de 2024.</p>
         <RouterLink :to="{ name: 'guide' }">Commencer le guide</RouterLink>
     </main>
 </template>
