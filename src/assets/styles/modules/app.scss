@@ -1,0 +1,12 @@
+.app {
+    &__header {
+        background: $backgroundDark;
+        padding: 1rem 2rem;
+        position: sticky;
+        top: 0;
+    }
+
+    &__body {
+        padding: 2rem;
+    }
+}

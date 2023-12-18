@@ -48,6 +48,7 @@ watch(checked, (newChecked) => {
 
     &--on {
         background: #aa98b4;
+        background: radial-gradient(#efebf1, #aa98b4);
     }
 
     &--active {

@@ -41,11 +41,13 @@ onUnmounted(() => stop())
         <section class="content__breakout l__soundGrid">
             <SoundGrid :beat="beat" :divisions="divisions" />
         </section>
-        <div>
-            <p>Sur une grille de 4 emplacements, on peut le voir se déplacer.</p>
-        </div>
-        <p>Pour le moment, le battement est réglé sur 1 seconde. Il se déplace donc d'1 seconde à la fois, du 1er au 4ème emplacement.</p>
-        <p>Lorsqu'il arrive au 4ème emplacement, il revient au 1er et forme donc une boucle de 4 secondes.</p>
+        <p>
+            Sur une grille de 4 emplacements, on peut le voir se déplacer.
+            <br />
+            Pour le moment, le battement est réglé sur 1 seconde. Il se déplace donc d'1 seconde à la fois, du 1er au 4ème emplacement.
+            <br />
+            Lorsqu'il arrive au 4ème emplacement, il revient au 1er et forme donc une boucle de 4 secondes.
+        </p>
     </main>
 </template>
 

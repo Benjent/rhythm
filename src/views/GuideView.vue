@@ -41,9 +41,16 @@ const goToPreviousStep = () => {
 </script>
 
 <template>
-    <component :is="steps[step]" />
-    <Actions>
-        <Button color="ghost" @click="goToPreviousStep">Précédent</Button>
-        <Button @click="goToNextStep">Suivant</Button>
-    </Actions>
+    <div class="journey">
+        <component :is="steps[step]" class="journey__step" />
+        <Actions class="journey__footer">
+            <Button color="ghost" @click="goToPreviousStep">Précédent</Button>
+            <Button @click="goToNextStep">Suivant</Button>
+        </Actions>
+    </div>
 </template>
+
+
+<style lang="scss" scoped>
+@import "../assets/styles/modules/journey.scss";
+</style>

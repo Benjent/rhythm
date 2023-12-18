@@ -14,26 +14,32 @@ const props = defineProps({
 </template>
 
 <style lang="scss" scoped>
+@import "@/assets/styles/basics/colors.scss";
+@import "@/assets/styles/basics/fonts.scss";
+
 .button {
     border-radius: 5px;
     padding: 12px 16px;
     border-width: 2px;
     cursor: pointer;
+    transition: all .2s;
+    font-family: $logoFont;
+    font-size: 2rem;
     
     &--primary {
         color: white;
-        background: #830d7d;
-        border-color: #830d7d;
+        background: $primary;
+        border-color: $primary;
 
         
         &:hover {
-            background: #9b0450;
-            border-color: #9b0450;
+            background: $primaryLight;
+            border-color: $primaryLight;
         }
     }
 
     &--ghost {
-        color: #830d7d;
+        color: $primary;
         background: transparent;
         border-color: transparent;
 

@@ -64,9 +64,13 @@ onUnmounted(() => stop())
                 <Tile :id="value" :active="beat === value" :on="soundGrid[index]" @change="toggleTile" />
             </GridItem>
         </SoundGrid>
-        <p>Ici, chaque tuile représente le quart d'un battement. On nomme la durée de ce quart une double croche. Ici, une tuile vaut une double croche.</p>
-        <p>Deux tuiles valent donc deux double croches, qui valent au total une croche.</p>
-        <p>Quatre tuiles valent donc deux croches, qui valent au total une noire.</p>
+        <p>
+            Ici, chaque tuile représente le quart d'un battement. On nomme la durée de ce quart une double croche. Ici, une tuile vaut une double croche.
+            <br />
+            Deux tuiles valent donc deux double croches, qui valent au total une croche.
+            <br />
+            Quatre tuiles valent donc deux croches, qui valent au total une noire.
+        </p>
     </main>
 </template>
 

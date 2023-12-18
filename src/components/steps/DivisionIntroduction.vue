@@ -54,9 +54,13 @@ onUnmounted(() => stop())
 
 <template>
     <main class="content">
-        <p>Voici encore notre battement. Il dure encore 1 seconde.</p>
-        <p>Il sert de guide.</p>
-        <p>En dessous du battement, il y a des tuiles. Cliquez sur une d'entre elles pour créer un rythme. Le rythme est joué chaque fois que le battement tombe dessus.</p>
+        <p>
+            Voici encore notre battement. Il dure encore 1 seconde.
+            <br />
+            Il sert de guide.
+            <br />
+            En dessous du battement, il y a des tuiles. Cliquez sur une d'entre elles pour créer un rythme. Le rythme est joué chaque fois que le battement tombe dessus.
+        </p>
         <Actions>
             <Button @click="isPlaying ? stop() : play()">{{ isPlaying ? "Stop" : "Play" }}</Button>
         </Actions>
